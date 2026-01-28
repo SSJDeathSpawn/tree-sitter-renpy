@@ -1,0 +1,46 @@
+=======================================
+Show, Talk and Hide
+=======================================
+label talk:
+    show e
+    e "Line one."
+    e happy "Line two."
+    "Narration."
+    hide e
+
+---------------------------------------
+
+(source_file
+    (label_stmt
+        (LABEL_NAME
+            (NAME))
+        (block
+            (indent)
+            (show_stmt
+                (image_spec
+                    (NAME))
+                (newline))
+            (say_dialogue
+                (say_who
+                    (NAME))
+                (say_what
+                    (STRING))
+                (newline))
+            (say_dialogue
+                (say_who
+                    (NAME))
+                (say_attrs
+                    (say_attr
+                        (NAME)))
+                (say_what
+                    (STRING))
+                (newline))
+            (say_narration
+                (say_what
+                    (STRING))
+                (newline))
+            (hide_stmt
+                (image_spec
+                    (NAME))
+                (newline))
+            (dedent))))

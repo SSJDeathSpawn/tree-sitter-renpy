@@ -1,0 +1,842 @@
+[
+  {
+    "type": "say_stmt",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "say_dialogue",
+        "named": true
+      },
+      {
+        "type": "say_narration",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "call_stmt",
+        "named": true
+      },
+      {
+        "type": "default_stmt",
+        "named": true
+      },
+      {
+        "type": "define_stmt",
+        "named": true
+      },
+      {
+        "type": "hide_stmt",
+        "named": true
+      },
+      {
+        "type": "if_stmt",
+        "named": true
+      },
+      {
+        "type": "image_stmt",
+        "named": true
+      },
+      {
+        "type": "jump_stmt",
+        "named": true
+      },
+      {
+        "type": "label_stmt",
+        "named": true
+      },
+      {
+        "type": "menu_stmt",
+        "named": true
+      },
+      {
+        "type": "pass_stmt",
+        "named": true
+      },
+      {
+        "type": "return_stmt",
+        "named": true
+      },
+      {
+        "type": "say_stmt",
+        "named": true
+      },
+      {
+        "type": "scene_stmt",
+        "named": true
+      },
+      {
+        "type": "show_stmt",
+        "named": true
+      },
+      {
+        "type": "while_stmt",
+        "named": true
+      },
+      {
+        "type": "with_stmt",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "LABEL_NAME",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "STRING",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dedent",
+          "named": true
+        },
+        {
+          "type": "indent",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "call_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "LABEL_NAME",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "default_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "python_rest",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "define_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "python_rest",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "elif_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "python_rest",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "else_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hide_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "image_spec",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "with_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "elif_clause",
+          "named": true
+        },
+        {
+          "type": "else_clause",
+          "named": true
+        },
+        {
+          "type": "python_rest",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "image_modifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        },
+        {
+          "type": "parenthesized_python",
+          "named": true
+        },
+        {
+          "type": "simple_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "image_spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        },
+        {
+          "type": "image_modifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "image_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "python_rest",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "jump_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "LABEL_NAME",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "label_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "LABEL_NAME",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "menu_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "LABEL_NAME",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesized_python",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "pass_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "return_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "python_rest",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "say_attr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "say_attrs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "say_attr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "say_dialogue",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "say_attrs",
+          "named": true
+        },
+        {
+          "type": "say_temp_attrs",
+          "named": true
+        },
+        {
+          "type": "say_what",
+          "named": true
+        },
+        {
+          "type": "say_who",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "say_narration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "say_what",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "say_temp_attrs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "say_attrs",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "say_what",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "STRING",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "say_who",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scene_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "image_spec",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "with_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "show_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "image_spec",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "with_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "simple_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        },
+        {
+          "type": "STRING",
+          "named": true
+        },
+        {
+          "type": "parenthesized_python",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "while_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "python_rest",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "with_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "simple_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "with_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "simple_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "NAME",
+    "named": true
+  },
+  {
+    "type": "as",
+    "named": false
+  },
+  {
+    "type": "at",
+    "named": false
+  },
+  {
+    "type": "behind",
+    "named": false
+  },
+  {
+    "type": "call",
+    "named": false
+  },
+  {
+    "type": "dedent",
+    "named": true
+  },
+  {
+    "type": "default",
+    "named": false
+  },
+  {
+    "type": "define",
+    "named": false
+  },
+  {
+    "type": "elif",
+    "named": false
+  },
+  {
+    "type": "else",
+    "named": false
+  },
+  {
+    "type": "from",
+    "named": false
+  },
+  {
+    "type": "hide",
+    "named": false
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "image",
+    "named": false
+  },
+  {
+    "type": "indent",
+    "named": true
+  },
+  {
+    "type": "jump",
+    "named": false
+  },
+  {
+    "type": "label",
+    "named": false
+  },
+  {
+    "type": "menu",
+    "named": false
+  },
+  {
+    "type": "newline",
+    "named": true
+  },
+  {
+    "type": "onlayer",
+    "named": false
+  },
+  {
+    "type": "pass",
+    "named": false
+  },
+  {
+    "type": "python_rest",
+    "named": true
+  },
+  {
+    "type": "return",
+    "named": false
+  },
+  {
+    "type": "scene",
+    "named": false
+  },
+  {
+    "type": "show",
+    "named": false
+  },
+  {
+    "type": "while",
+    "named": false
+  },
+  {
+    "type": "with",
+    "named": false
+  },
+  {
+    "type": "zorder",
+    "named": false
+  }
+]

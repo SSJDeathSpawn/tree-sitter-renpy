@@ -1,0 +1,73 @@
+=================================
+Simple Say
+=================================
+e "I am happy"
+e happy "Because of you"
+
+---------------------------------
+
+(source_file
+    (say_dialogue
+        (say_who
+            (NAME))
+        (say_what
+            (STRING))
+        (newline))
+    (say_dialogue
+        (say_who
+            (NAME))
+        (say_attrs
+            (say_attr
+                (NAME)))
+        (say_what
+            (STRING))
+        (newline)))
+
+=================================
+Say with Attributes
+=================================
+e confused "What?"
+e happy @surprised "Oh..."
+e "So..."
+e -happy "Wait. What?"
+
+---------------------------------
+
+(source_file
+    (say_dialogue
+        (say_who
+            (NAME))
+        (say_attrs
+            (say_attr
+                (NAME)))
+        (say_what
+            (STRING))
+        (newline))
+    (say_dialogue
+        (say_who
+            (NAME))
+        (say_attrs
+            (say_attr
+                (NAME)))
+        (say_temp_attrs
+            (say_attrs
+                (say_attr
+                    (NAME))))
+        (say_what
+            (STRING))
+        (newline))
+    (say_dialogue
+        (say_who
+            (NAME))
+        (say_what
+            (STRING))
+        (newline))
+    (say_dialogue
+        (say_who
+            (NAME))
+        (say_attrs
+            (say_attr
+                (NAME)))
+        (say_what
+            (STRING))
+        (newline)))

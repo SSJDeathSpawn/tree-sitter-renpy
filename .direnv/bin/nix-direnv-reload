@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -e
+if [[ ! -d "/files/Programming/Projects/tree-sitter-renpy" ]]; then
+  echo "Cannot find source directory; Did you move it?"
+  echo "(Looking for "/files/Programming/Projects/tree-sitter-renpy")"
+  echo 'Cannot force reload with this script - use "direnv reload" manually and then try again'
+  exit 1
+fi
+
+# rebuild the cache forcefully
+_nix_direnv_force_reload=1 direnv exec "/files/Programming/Projects/tree-sitter-renpy" true
+
+# Update the mtime for .envrc.
+# This will cause direnv to reload again - but without re-building.
+touch "/files/Programming/Projects/tree-sitter-renpy/.envrc"
+
+# Also update the timestamp of whatever profile_rc we have.
+# This makes sure that we know we are up to date.
+touch -r "/files/Programming/Projects/tree-sitter-renpy/.envrc" "/files/Programming/Projects/tree-sitter-renpy/.direnv"/*.rc

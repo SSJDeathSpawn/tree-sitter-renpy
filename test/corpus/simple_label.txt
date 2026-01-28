@@ -1,0 +1,55 @@
+==========================================
+Simple Label
+==========================================
+label start:
+    pass
+
+-----------------------------------------
+
+(source_file
+    (label_stmt
+        (LABEL_NAME
+            (NAME))
+        (block
+            (indent)
+            (pass_stmt
+                (newline))
+            (dedent))))
+
+=========================================
+Label with Dotted Name
+=========================================
+label game.start:
+    pass
+
+-----------------------------------------
+
+(source_file
+    (label_stmt
+        (LABEL_NAME
+            (NAME)
+            (NAME))
+        (block
+            (indent)
+            (pass_stmt
+                (newline))
+            (dedent))))
+
+=========================================
+Label with Hidden Name
+=========================================
+label .hidden:
+    pass
+
+-----------------------------------------
+
+(source_file
+    (label_stmt
+        (LABEL_NAME
+            (NAME))
+        (block
+            (indent)
+            (pass_stmt
+                (newline))
+            (dedent))))
+
