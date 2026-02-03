@@ -23,7 +23,8 @@ module.exports = grammar({
   ],
 
   supertypes: $ => [
-    $.statement, $.say_stmt,
+    $._simple_stmt, $.say_stmt,
+    $.end_statement
   ],
 
   word: $ => $.NAME,
@@ -33,7 +34,7 @@ module.exports = grammar({
      * Source
      * ───────────── */
 
-    source_file: $ => repeat1($.statement),
+    source_file: $ => repeat1(alias($.middle_statement, $.statement)),
 
     /* ─────────────
      * Tokens
@@ -75,7 +76,7 @@ module.exports = grammar({
     block: $ =>
       seq(
         $.indent,
-        repeat1($.statement),
+        $.statements,
         $.dedent
       ),
 
@@ -83,16 +84,36 @@ module.exports = grammar({
      * Statements
      * ───────────── */
 
-    statement: $ => choice(
+    statements: $ => seq(
+        repeat(alias($.middle_statement, $.statement)),
+        alias($.end_statement, $.statement),
+    ),
+
+    middle_statement: $ => choice(
+      $._terminated_simple_stmt,
+      $._complex_stmt
+    ),
+
+    end_statement: $ => choice(
+      $._simple_stmt,
+      $._complex_stmt
+    ),
+
+    _complex_stmt: $ => choice(
       $.label_stmt,
+      $.if_stmt,
+      $.while_stmt,
+      $.menu_stmt,
+    ),
+
+    _terminated_simple_stmt: $ => seq($._simple_stmt, $.newline),
+
+    _simple_stmt: $ => choice(
       $.say_stmt,
       $.show_stmt,
       $.hide_stmt,
       $.scene_stmt,
       $.with_stmt,
-      $.if_stmt,
-      $.while_stmt,
-      $.menu_stmt,
       $.jump_stmt,
       $.call_stmt,
       $.return_stmt,
@@ -120,8 +141,8 @@ module.exports = grammar({
 
     say_stmt: $ => choice( $.say_dialogue, $.say_narration ), 
 
-    say_dialogue: $ => seq( $.say_who, optional($.say_attrs), optional($.say_temp_attrs), $.say_what, $.newline ), 
-    say_narration: $ => seq( $.say_what, $.newline ), 
+    say_dialogue: $ => seq( $.say_who, optional($.say_attrs), optional($.say_temp_attrs), $.say_what),
+    say_narration: $ => seq( $.say_what),
     say_who: $ => prec(2, $.NAME), 
     say_attr: $ => seq(optional('-'), $.NAME), 
     say_attrs: $ => prec(1, repeat1($.say_attr)), 
@@ -137,7 +158,6 @@ module.exports = grammar({
         "show",
         $.image_spec,
         optional($.with_clause),
-        $.newline
       ),
 
     hide_stmt: $ =>
@@ -145,7 +165,6 @@ module.exports = grammar({
         "hide",
         $.image_spec,
         optional($.with_clause),
-        $.newline
       ),
 
     scene_stmt: $ =>
@@ -153,7 +172,6 @@ module.exports = grammar({
         "scene",
         optional($.image_spec),
         optional($.with_clause),
-        $.newline
       ),
 
     image_spec: $ =>
@@ -163,12 +181,22 @@ module.exports = grammar({
       ),
 
     image_modifier: $ => choice(
-      seq("at", $.parenthesized_python),
-      seq("onlayer", $.NAME),
-      seq("as", $.NAME),
-      seq("zorder", $.simple_expr),
-      seq("behind", repeat1($.NAME)),
+      $.at_clause,
+      $.onlayer_clause,
+      $.as_clause,
+      $.zorder_clause,
+      $.behind_clause,
     ),
+
+    behind_clause: $ => seq("behind", repeat1($.NAME)),
+
+    zorder_clause: $ => seq("zorder", $.simple_expr),
+
+    as_clause: $ => seq("as", $.NAME),
+
+    onlayer_clause: $ => seq("onlayer", $.NAME),
+
+    at_clause: $ => seq("at", $.simple_expr),
 
     /* ─────────────
      * With
@@ -184,7 +212,6 @@ module.exports = grammar({
       seq(
         "with",
         $.simple_expr,
-        $.newline
       ),
 
     /* ─────────────
@@ -224,8 +251,7 @@ module.exports = grammar({
         $.block
       ),
 
-    pass_stmt: $ =>
-      seq("pass", $.newline),
+    pass_stmt: $ => "pass",
 
     /* ─────────────
      * Menu
@@ -235,6 +261,21 @@ module.exports = grammar({
       seq(
         "menu",
         optional($.LABEL_NAME),
+        ":",
+        $.menu_block
+      ),
+
+    menu_block: $ =>
+      seq(
+        $.indent,
+        optional(seq($.say_stmt, $.newline)),
+        repeat1($.choice),
+        $.dedent
+      ),
+
+    choice: $ =>
+      seq(
+        $.say_what,
         ":",
         $.block
       ),
@@ -247,7 +288,6 @@ module.exports = grammar({
       seq(
         "jump",
         $.LABEL_NAME,
-        $.newline
       ),
 
     call_stmt: $ =>
@@ -255,14 +295,12 @@ module.exports = grammar({
         "call",
         $.LABEL_NAME,
         optional(seq("from", $.LABEL_NAME)),
-        $.newline
       ),
 
     return_stmt: $ =>
       seq(
         "return",
         optional($.python_rest),
-        $.newline
       ),
 
     /* ─────────────
@@ -275,7 +313,6 @@ module.exports = grammar({
         repeat1($.NAME),
         "=",
         $.python_rest,
-        $.newline
       ),
 
     define_stmt: $ =>
@@ -284,7 +321,6 @@ module.exports = grammar({
         $.NAME,
         "=",
         $.python_rest,
-        $.newline
       ),
 
     default_stmt: $ =>
@@ -293,7 +329,6 @@ module.exports = grammar({
         $.NAME,
         "=",
         $.python_rest,
-        $.newline
       ),
   }
 });

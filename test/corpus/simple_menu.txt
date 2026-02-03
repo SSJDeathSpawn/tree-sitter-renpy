@@ -1,0 +1,56 @@
+==============================================
+Menu With 3 Choices
+==============================================
+menu:
+    e "Hmmm..."
+
+    "Jump into the well":
+        pass
+
+    "Fly into the sky":
+        pass
+
+    "Pass out":
+        pass
+
+---------------------------------------------
+
+(source_file
+    (statement
+        (menu_stmt
+            (menu_block
+                (indent)
+                (say_dialogue
+                    (say_who
+                        (NAME))
+                    (say_what
+                        (STRING)))
+                    (newline)
+                (choice
+                    (say_what
+                        (STRING))
+                        (block
+                            (indent)
+                            (statements
+                                (statement
+                                    (pass_stmt)))
+                            (dedent)))
+                (choice
+                    (say_what
+                        (STRING))
+                        (block
+                            (indent)
+                            (statements
+                                (statement
+                                    (pass_stmt)))
+                            (dedent)))
+                (choice
+                    (say_what
+                        (STRING))
+                        (block
+                            (indent)
+                            (statements
+                                (statement
+                                    (pass_stmt)))
+                            (dedent)))
+                (dedent)))))

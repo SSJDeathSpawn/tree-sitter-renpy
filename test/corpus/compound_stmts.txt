@@ -1,5 +1,5 @@
 =======================================
-Show, Talk and Hide
+Label, Show, Talk and Hide
 =======================================
 label talk:
     show e
@@ -11,36 +11,102 @@ label talk:
 ---------------------------------------
 
 (source_file
-    (label_stmt
-        (LABEL_NAME
-            (NAME))
-        (block
-            (indent)
-            (show_stmt
-                (image_spec
-                    (NAME))
-                (newline))
-            (say_dialogue
-                (say_who
-                    (NAME))
-                (say_what
-                    (STRING))
-                (newline))
-            (say_dialogue
-                (say_who
-                    (NAME))
-                (say_attrs
-                    (say_attr
-                        (NAME)))
-                (say_what
-                    (STRING))
-                (newline))
-            (say_narration
-                (say_what
-                    (STRING))
-                (newline))
-            (hide_stmt
-                (image_spec
-                    (NAME))
-                (newline))
-            (dedent))))
+    (statement
+        (label_stmt
+            (LABEL_NAME
+                (NAME))
+            (block
+                (indent)
+                (statements
+                    (statement
+                        (show_stmt
+                            (image_spec
+                                (NAME)))
+                            (newline))
+                    (statement
+                        (say_dialogue
+                            (say_who
+                                (NAME))
+                            (say_what
+                                (STRING)))
+                            (newline))
+                    (statement
+                        (say_dialogue
+                            (say_who
+                                (NAME))
+                            (say_attrs
+                                (say_attr
+                                    (NAME)))
+                            (say_what
+                                (STRING)))
+                            (newline))
+                    (statement
+                        (say_narration
+                            (say_what
+                                (STRING)))
+                            (newline))
+                    (statement
+                        (hide_stmt
+                            (image_spec
+                                (NAME)))))
+                (dedent)))))
+
+=======================================
+A Scene With Choices
+=======================================
+label start:
+        
+    "Here we see Eileen"
+
+    show e at right
+    
+    menu:
+        
+        e "I wonder what I should do..."
+
+        "Go left":
+            show e at left with ease
+            e "I am at left now"
+        
+        "Nothing":
+            e "I did nothing"
+
+----------------------------------------
+
+(source_file
+    (statement
+        (label_stmt
+            (label_name
+                (NAME))
+            (block
+                (indent)
+                (statements
+                    (statement
+                        (say_narration
+                            (say_what
+                                (STRING)))
+                        (newline))
+                    (statement
+                        (show_stmt
+                            (image_spec
+                                (NAME)
+                                (image_modifier
+                                    (at
+                                        (simple_expr)))))
+                        (newline))
+                    (statement
+                        (menu_stmt
+                            (menu_block
+                                (indent)
+                                (say_dialogue
+                                    (say_who
+                                        (NAME))
+                                    (say_what
+                                        (STRING)))
+                                (newline)
+                                (choice
+                                    (say_what
+                                        (STRING))
+
+
+    

@@ -7,21 +7,23 @@ e happy "Because of you"
 ---------------------------------
 
 (source_file
-    (say_dialogue
-        (say_who
-            (NAME))
-        (say_what
-            (STRING))
-        (newline))
-    (say_dialogue
-        (say_who
-            (NAME))
-        (say_attrs
-            (say_attr
-                (NAME)))
-        (say_what
-            (STRING))
-        (newline)))
+    (statement
+        (say_dialogue
+            (say_who
+                (NAME))
+            (say_what
+                (STRING)))
+            (newline))
+    (statement
+        (say_dialogue
+            (say_who
+                (NAME))
+            (say_attrs
+                (say_attr
+                    (NAME)))
+            (say_what
+                (STRING)))
+            (newline)))
 
 =================================
 Say with Attributes
@@ -34,40 +36,44 @@ e -happy "Wait. What?"
 ---------------------------------
 
 (source_file
-    (say_dialogue
-        (say_who
-            (NAME))
-        (say_attrs
-            (say_attr
-                (NAME)))
-        (say_what
-            (STRING))
-        (newline))
-    (say_dialogue
-        (say_who
-            (NAME))
-        (say_attrs
-            (say_attr
-                (NAME)))
-        (say_temp_attrs
+    (statement
+        (say_dialogue
+            (say_who
+                (NAME))
             (say_attrs
                 (say_attr
-                    (NAME))))
-        (say_what
-            (STRING))
-        (newline))
-    (say_dialogue
-        (say_who
-            (NAME))
-        (say_what
-            (STRING))
-        (newline))
-    (say_dialogue
-        (say_who
-            (NAME))
-        (say_attrs
-            (say_attr
-                (NAME)))
-        (say_what
-            (STRING))
-        (newline)))
+                    (NAME)))
+            (say_what
+                (STRING)))
+            (newline))
+    (statement
+        (say_dialogue
+            (say_who
+                (NAME))
+            (say_attrs
+                (say_attr
+                    (NAME)))
+            (say_temp_attrs
+                (say_attrs
+                    (say_attr
+                        (NAME))))
+            (say_what
+                (STRING)))
+            (newline))
+    (statement
+        (say_dialogue
+            (say_who
+                (NAME))
+            (say_what
+                (STRING)))
+            (newline))
+    (statement
+        (say_dialogue
+            (say_who
+                (NAME))
+            (say_attrs
+                (say_attr
+                    (NAME)))
+            (say_what
+                (STRING)))
+            (newline)))

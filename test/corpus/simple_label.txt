@@ -7,14 +7,16 @@ label start:
 -----------------------------------------
 
 (source_file
-    (label_stmt
-        (LABEL_NAME
-            (NAME))
-        (block
-            (indent)
-            (pass_stmt
-                (newline))
-            (dedent))))
+    (statement
+        (label_stmt
+            (LABEL_NAME
+                (NAME))
+            (block
+                (indent)
+                (statements
+                    (statement
+                        (pass_stmt)))
+                (dedent)))))
 
 =========================================
 Label with Dotted Name
@@ -25,15 +27,17 @@ label game.start:
 -----------------------------------------
 
 (source_file
-    (label_stmt
-        (LABEL_NAME
-            (NAME)
-            (NAME))
-        (block
-            (indent)
-            (pass_stmt
-                (newline))
-            (dedent))))
+    (statement
+        (label_stmt
+            (LABEL_NAME
+                (NAME)
+                (NAME))
+            (block
+                (indent)
+                (statements
+                    (statement
+                        (pass_stmt)))
+                (dedent)))))
 
 =========================================
 Label with Hidden Name
@@ -44,12 +48,14 @@ label .hidden:
 -----------------------------------------
 
 (source_file
-    (label_stmt
-        (LABEL_NAME
-            (NAME))
-        (block
-            (indent)
-            (pass_stmt
-                (newline))
-            (dedent))))
+    (statement
+        (label_stmt
+            (LABEL_NAME
+                (NAME))
+            (block
+                (indent)
+                (statements
+                    (statement
+                        (pass_stmt)))
+                (dedent)))))
 

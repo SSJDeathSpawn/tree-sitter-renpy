@@ -6,9 +6,10 @@ show eileen
 ---------------------------------------
 
 (source_file
-    (show_stmt
-        (image_spec
-            (NAME))
-        (newline)))
+    (statement
+        (show_stmt
+            (image_spec
+                (NAME)))
+            (newline)))
 
         

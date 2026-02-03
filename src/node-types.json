@@ -1,20 +1,6 @@
 [
   {
-    "type": "say_stmt",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "say_dialogue",
-        "named": true
-      },
-      {
-        "type": "say_narration",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "statement",
+    "type": "_simple_stmt",
     "named": true,
     "subtypes": [
       {
@@ -34,23 +20,11 @@
         "named": true
       },
       {
-        "type": "if_stmt",
-        "named": true
-      },
-      {
         "type": "image_stmt",
         "named": true
       },
       {
         "type": "jump_stmt",
-        "named": true
-      },
-      {
-        "type": "label_stmt",
-        "named": true
-      },
-      {
-        "type": "menu_stmt",
         "named": true
       },
       {
@@ -74,11 +48,47 @@
         "named": true
       },
       {
-        "type": "while_stmt",
+        "type": "with_stmt",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "end_statement",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "_simple_stmt",
         "named": true
       },
       {
-        "type": "with_stmt",
+        "type": "if_stmt",
+        "named": true
+      },
+      {
+        "type": "label_stmt",
+        "named": true
+      },
+      {
+        "type": "menu_stmt",
+        "named": true
+      },
+      {
+        "type": "while_stmt",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "say_stmt",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "say_dialogue",
+        "named": true
+      },
+      {
+        "type": "say_narration",
         "named": true
       }
     ]
@@ -104,6 +114,51 @@
     "fields": {}
   },
   {
+    "type": "as_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "at_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "simple_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "behind_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {},
@@ -120,7 +175,7 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "statements",
           "named": true
         }
       ]
@@ -137,9 +192,24 @@
         {
           "type": "LABEL_NAME",
           "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "choice",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
         },
         {
-          "type": "newline",
+          "type": "say_what",
           "named": true
         }
       ]
@@ -155,10 +225,6 @@
       "types": [
         {
           "type": "NAME",
-          "named": true
-        },
-        {
-          "type": "newline",
           "named": true
         },
         {
@@ -178,10 +244,6 @@
       "types": [
         {
           "type": "NAME",
-          "named": true
-        },
-        {
-          "type": "newline",
           "named": true
         },
         {
@@ -238,10 +300,6 @@
           "named": true
         },
         {
-          "type": "newline",
-          "named": true
-        },
-        {
           "type": "with_clause",
           "named": true
         }
@@ -280,19 +338,27 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "NAME",
+          "type": "as_clause",
           "named": true
         },
         {
-          "type": "parenthesized_python",
+          "type": "at_clause",
           "named": true
         },
         {
-          "type": "simple_expr",
+          "type": "behind_clause",
+          "named": true
+        },
+        {
+          "type": "onlayer_clause",
+          "named": true
+        },
+        {
+          "type": "zorder_clause",
           "named": true
         }
       ]
@@ -330,10 +396,6 @@
           "named": true
         },
         {
-          "type": "newline",
-          "named": true
-        },
-        {
           "type": "python_rest",
           "named": true
         }
@@ -345,15 +407,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "LABEL_NAME",
-          "named": true
-        },
-        {
-          "type": "newline",
           "named": true
         }
       ]
@@ -379,6 +437,37 @@
     }
   },
   {
+    "type": "menu_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "choice",
+          "named": true
+        },
+        {
+          "type": "dedent",
+          "named": true
+        },
+        {
+          "type": "indent",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "say_stmt",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "menu_stmt",
     "named": true,
     "fields": {},
@@ -391,7 +480,22 @@
           "named": true
         },
         {
-          "type": "block",
+          "type": "menu_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "onlayer_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NAME",
           "named": true
         }
       ]
@@ -403,32 +507,13 @@
     "fields": {}
   },
   {
-    "type": "pass_stmt",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "newline",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "return_stmt",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
-        {
-          "type": "newline",
-          "named": true
-        },
         {
           "type": "python_rest",
           "named": true
@@ -475,10 +560,6 @@
       "required": true,
       "types": [
         {
-          "type": "newline",
-          "named": true
-        },
-        {
           "type": "say_attrs",
           "named": true
         },
@@ -502,13 +583,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "newline",
-          "named": true
-        },
         {
           "type": "say_what",
           "named": true
@@ -567,14 +644,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "image_spec",
-          "named": true
-        },
-        {
-          "type": "newline",
           "named": true
         },
         {
@@ -594,10 +667,6 @@
       "types": [
         {
           "type": "image_spec",
-          "named": true
-        },
-        {
-          "type": "newline",
           "named": true
         },
         {
@@ -634,6 +703,56 @@
     "type": "source_file",
     "named": true,
     "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_simple_stmt",
+          "named": true
+        },
+        {
+          "type": "if_stmt",
+          "named": true
+        },
+        {
+          "type": "label_stmt",
+          "named": true
+        },
+        {
+          "type": "menu_stmt",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "while_stmt",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statements",
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -685,13 +804,24 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "newline",
+          "type": "simple_expr",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "zorder_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
           "type": "simple_expr",
           "named": true
@@ -808,8 +938,8 @@
     "named": false
   },
   {
-    "type": "pass",
-    "named": false
+    "type": "pass_stmt",
+    "named": true
   },
   {
     "type": "python_rest",

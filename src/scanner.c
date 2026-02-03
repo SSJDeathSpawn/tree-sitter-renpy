@@ -69,9 +69,6 @@ bool tree_sitter_renpy_external_scanner_scan(void *payload, TSLexer *lexer,
                                              const bool *valid_symbols) {
   ScannerState *state = (ScannerState *)payload;
 
-  if (valid_symbols[ERROR_SENTINEL])
-    return false;
-
   // 1. Handle queued dedents
   if (state->pending_dedents > 0 && valid_symbols[DEDENT]) {
     state->pending_dedents--;
@@ -95,7 +92,9 @@ bool tree_sitter_renpy_external_scanner_scan(void *payload, TSLexer *lexer,
 
     if (lexer->eof(lexer)) {
       if (state->stack_size > 0 && valid_symbols[DEDENT]) {
-        state->stack_size--;
+        state->pending_dedents = state->stack_size;
+        state->stack_size = 0;
+        state->pending_dedents--;
         lexer->result_symbol = DEDENT;
         return true;
       }
@@ -103,23 +102,23 @@ bool tree_sitter_renpy_external_scanner_scan(void *payload, TSLexer *lexer,
     }
 
     // Move past the newline
-    lexer->advance(lexer, false);
+    lexer->advance(lexer, true);
 
     // Look ahead to calculate the next indentation level
     uint32_t new_indent = 0;
     while (true) {
       if (lexer->lookahead == ' ') {
         new_indent++;
-        lexer->advance(lexer, false);
+        lexer->advance(lexer, true);
       } else if (lexer->lookahead == '\t') {
         new_indent += 4;
-        lexer->advance(lexer, false);
+        lexer->advance(lexer, true);
       } else if (lexer->lookahead == '\n') {
         new_indent = 0;
-        lexer->advance(lexer, false);
+        lexer->advance(lexer, true);
       } else if (lexer->lookahead == '#') {
         while (lexer->lookahead && lexer->lookahead != '\n')
-          lexer->advance(lexer, false);
+          lexer->advance(lexer, true);
       } else {
         break;
       }
