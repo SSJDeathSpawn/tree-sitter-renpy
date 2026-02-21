@@ -76,7 +76,7 @@ label start:
 (source_file
     (statement
         (label_stmt
-            (label_name
+            (LABEL_NAME
                 (NAME))
             (block
                 (indent)
@@ -91,8 +91,9 @@ label start:
                             (image_spec
                                 (NAME)
                                 (image_modifier
-                                    (at
-                                        (simple_expr)))))
+                                    (at_clause
+                                        (simple_expr
+                                            (NAME))))))
                         (newline))
                     (statement
                         (menu_stmt
@@ -107,6 +108,42 @@ label start:
                                 (choice
                                     (say_what
                                         (STRING))
-
+                                    (block
+                                        (indent)
+                                        (statements
+                                            (statement
+                                                (show_stmt
+                                                    (image_spec
+                                                        (NAME)
+                                                        (image_modifier
+                                                            (at_clause
+                                                                (simple_expr
+                                                                    (NAME)))))
+                                                    (with_clause
+                                                        (simple_expr
+                                                            (NAME))))
+                                                (newline))
+                                            (statement
+                                                (say_dialogue
+                                                    (say_who
+                                                        (NAME))
+                                                    (say_what
+                                                        (STRING)))))
+                                        (dedent)))
+                                    (choice
+                                        (say_what
+                                            (STRING))
+                                        (block
+                                            (indent)
+                                            (statements
+                                                (statement
+                                                    (say_dialogue
+                                                        (say_who
+                                                            (NAME))
+                                                        (say_what
+                                                            (STRING)))))
+                                                (dedent)))
+                                        (dedent)))))
+                                    (dedent)))))
 
     

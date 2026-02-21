@@ -49,3 +49,6 @@ zig-out/
 # Test Files
 test.log
 test-file.rpy
+
+# Nix files
+.direnv/
