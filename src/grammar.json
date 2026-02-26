@@ -15,6 +15,10 @@
         "value": "statement"
       }
     },
+    "comment": {
+      "type": "PATTERN",
+      "value": "#[^\\n]*"
+    },
     "NAME": {
       "type": "PATTERN",
       "value": "[A-Za-z_][A-Za-z0-9_]*"
@@ -986,8 +990,8 @@
       "value": "[ \\t\\f]"
     },
     {
-      "type": "PATTERN",
-      "value": "#[^\\n]*"
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],

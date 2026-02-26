@@ -19,7 +19,7 @@ module.exports = grammar({
 
   extras: $ => [
     /[ \t\f]/,
-    /#[^\n]*/,
+    $.comment,
   ],
 
   supertypes: $ => [
@@ -35,6 +35,13 @@ module.exports = grammar({
      * ───────────── */
 
     source_file: $ => repeat1(alias($.middle_statement, $.statement)),
+
+    /* ─────────────
+     * Comments
+     * ───────────── */
+    
+    comment: $ => /#[^\n]*/,
+
 
     /* ─────────────
      * Tokens
