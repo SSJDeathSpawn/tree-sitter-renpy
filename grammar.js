@@ -34,7 +34,7 @@ module.exports = grammar({
      * Source
      * ───────────── */
 
-    source_file: $ => repeat1(alias($.middle_statement, $.statement)),
+    source_file: $ => seq(repeat($.newline),repeat1(alias($.middle_statement, $.statement))),
 
     /* ─────────────
      * Comments
